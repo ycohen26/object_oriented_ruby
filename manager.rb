@@ -1,5 +1,5 @@
 class Employee
-  attr_reader :first_name, :last_name, :active
+  attr_reader :first_name, :last_name, :active, :salary
   attr_writer :active
 
   def initialize(input_options)
@@ -24,6 +24,7 @@ employee1.print_info
 employee2.print_info
 
 class Manager < Employee
+  attr_reader :employees
   def initialize(input_options)
     super
     @employees = input_options[:employees]
@@ -36,8 +37,8 @@ class Manager < Employee
   end
 
   def give_all_raises
-    employees.each do |raise|
-      give_annual_raise
+      employees.each do |employee|
+      employee.give_annual_raise
     end
   end
 end
@@ -46,6 +47,11 @@ manager = Manager.new(first_name: "Saron", last_name: "Yitbarek", salary: 100000
 manager.print_info
 manager.send_report
 
-employees.give_all_raises
+manager.give_all_raises
 
 employee1.print_info
+
+employee1 
+
+# Create a method in the Manager class called give_all_raises that loops through each of the manager’s employees and gives them a raise (using the give_annual_raise method). Demonstrate how it works.
+# Create a method in the Manager class called fire_all_employees that loops through each of the manager’s employees and changes their active status to false.
